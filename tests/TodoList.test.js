@@ -24,4 +24,15 @@ describe('TodoList', () => {
       expect(todoList.getByTitle('Pay bills').status).toBe('done');
     });
   });
+
+  describe('filterByStatus', () => {
+    it('should filter only open todos', () => {
+      todoList.add('Buy milk');
+      todoList.add('Pay bills');
+      todoList.complete('Pay bills');
+      todoList.filterByStatus('open');
+      expect(todoList.count()).toBe(1);
+      expect(todoList.getByIndex(0).title).toBe('Buy milk');
+    });
+  });
 });
