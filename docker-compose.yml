@@ -1,0 +1,6 @@
+services:
+  mini-todo:
+    build: .
+    volumes:
+      - .:/app
+      - /app/node_modules
