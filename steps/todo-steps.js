@@ -41,3 +41,26 @@ Then('{string} status is {string}', function (title, status) {
   const todo = todoList.getByTitle(title);
   assert.equal(todo.status, status);
 });
+
+let error;
+
+When('I filter only open todos', function () {
+  todoList.filterByStatus('open');
+});
+
+When('I try to add a todo with empty title', function () {
+  try {
+    todoList.add('');
+    error = null;
+  } catch (e) {
+    error = e.message;
+  }
+});
+
+Then('I get error message {string}', function (message) {
+  assert.equal(error, message);
+});
+
+Then('the list has {int} items', function (count) {
+  assert.equal(todoList.count(), count);
+});

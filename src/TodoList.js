@@ -1,9 +1,13 @@
 export class TodoList {
   constructor() {
     this.todos = [];
+    this.filteredTodos = null;
   }
 
   add(title) {
+    if (!title || title.trim() === '') {
+      throw new Error('Title cannot be empty');
+    }
     this.todos.push({ title, status: 'open' });
   }
 
@@ -14,12 +18,17 @@ export class TodoList {
     }
   }
 
+  filterByStatus(status) {
+    this.filteredTodos = this.todos.filter(t => t.status === status);
+  }
+
   count() {
-    return this.todos.length;
+    return this.filteredTodos ? this.filteredTodos.length : this.todos.length;
   }
 
   getByIndex(index) {
-    return this.todos[index];
+    const list = this.filteredTodos || this.todos;
+    return list[index];
   }
 
   getByTitle(title) {

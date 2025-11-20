@@ -15,6 +15,11 @@ describe('TodoList', () => {
       expect(todoList.getByIndex(0).title).toBe('Buy milk');
       expect(todoList.getByIndex(0).status).toBe('open');
     });
+
+    it('should throw error when title is empty', () => {
+      expect(() => todoList.add('')).toThrow('Title cannot be empty');
+      expect(todoList.count()).toBe(0);
+    });
   });
 
   describe('complete', () => {
@@ -22,6 +27,17 @@ describe('TodoList', () => {
       todoList.add('Pay bills');
       todoList.complete('Pay bills');
       expect(todoList.getByTitle('Pay bills').status).toBe('done');
+    });
+  });
+
+  describe('filterByStatus', () => {
+    it('should filter only open todos', () => {
+      todoList.add('Buy milk');
+      todoList.add('Pay bills');
+      todoList.complete('Pay bills');
+      todoList.filterByStatus('open');
+      expect(todoList.count()).toBe(1);
+      expect(todoList.getByIndex(0).title).toBe('Buy milk');
     });
   });
 });
