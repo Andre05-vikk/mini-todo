@@ -1,0 +1,13 @@
+{
+  "name": "mini-todo",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "bun test tests/",
+    "test:bdd": "cucumber-js features/ --import 'steps/**/*.js'",
+    "test:all": "bun test tests/ && cucumber-js features/ --import 'steps/**/*.js'"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^10.3.1"
+  }
+}
