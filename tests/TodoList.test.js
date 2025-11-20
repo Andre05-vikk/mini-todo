@@ -15,6 +15,11 @@ describe('TodoList', () => {
       expect(todoList.getByIndex(0).title).toBe('Buy milk');
       expect(todoList.getByIndex(0).status).toBe('open');
     });
+
+    it('should throw error when title is empty', () => {
+      expect(() => todoList.add('')).toThrow('Title cannot be empty');
+      expect(todoList.count()).toBe(0);
+    });
   });
 
   describe('complete', () => {
