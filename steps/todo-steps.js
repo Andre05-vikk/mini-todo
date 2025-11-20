@@ -1,29 +1,27 @@
 import { Given, When, Then } from '@cucumber/cucumber';
 import { strict as assert } from 'assert';
+import { TodoList } from '../src/TodoList.js';
 
 let todoList;
 
 Given('an empty list', function () {
-  // Pending - will implement after TodoList class exists
-  return 'pending';
+  todoList = new TodoList();
 });
 
 When('I add a todo {string}', function (title) {
-  // Pending - will implement after TodoList class exists
-  return 'pending';
+  todoList.add(title);
 });
 
 Then('the list has {int} item', function (count) {
-  // Pending - will implement after TodoList class exists
-  return 'pending';
+  assert.equal(todoList.count(), count);
 });
 
 Then('item {int} title is {string}', function (index, title) {
-  // Pending - will implement after TodoList class exists
-  return 'pending';
+  const todo = todoList.getByIndex(index - 1);
+  assert.equal(todo.title, title);
 });
 
 Then('item {int} status is {string}', function (index, status) {
-  // Pending - will implement after TodoList class exists
-  return 'pending';
+  const todo = todoList.getByIndex(index - 1);
+  assert.equal(todo.status, status);
 });
