@@ -16,4 +16,12 @@ describe('TodoList', () => {
       expect(todoList.getByIndex(0).status).toBe('open');
     });
   });
+
+  describe('complete', () => {
+    it('should mark todo as done by title', () => {
+      todoList.add('Pay bills');
+      todoList.complete('Pay bills');
+      expect(todoList.getByTitle('Pay bills').status).toBe('done');
+    });
+  });
 });
